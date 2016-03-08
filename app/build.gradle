@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'deploygate'
 
 android {
     compileSdkVersion 23
@@ -23,4 +24,20 @@ dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:23.2.0'
+}
+
+def env(String name, String defValue) {
+    def value = System.getenv()[name]
+    return value == null ? defValue : value
+}
+
+deploygate {
+    userName = "tomorrowkey"
+    token = env('DEPLOYGATE_API_KEY', null)
+
+    apks {
+        debug {
+            sourceFile = file("./build/outputs/apk/app-debug.apk")
+        }
+    }
 }
