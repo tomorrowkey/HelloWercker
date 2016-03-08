@@ -1,0 +1,22 @@
+box: gfx2015/android
+
+build:
+    steps:
+        - script:
+            name: show base information
+            code: |
+                env
+                ./gradlew -v
+
+        - script:
+            name: run gradle
+            code: |
+                ./gradlew --full-stacktrace --project-cache-dir=$WERCKER_CACHE_DIR clean
+                ./gradlew --full-stacktrace --project-cache-dir=$WERCKER_CACHE_DIR build
+
+deploy:
+    steps:
+        - script:
+            name: Upload apk to DeployGate
+            code: |
+                ./gradlew uploadDeployGateDebug
