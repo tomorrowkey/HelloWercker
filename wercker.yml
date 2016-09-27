@@ -1,4 +1,4 @@
-box: gfx2015/android
+box: tomorrowkey/wercker-container-android
 
 build:
     steps:
