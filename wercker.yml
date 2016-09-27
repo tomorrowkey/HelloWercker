@@ -28,7 +28,7 @@ build:
             code: |
                 ./gradlew --full-stacktrace --project-cache-dir=$WERCKER_CACHE_DIR clean
                 ./gradlew --full-stacktrace --project-cache-dir=$WERCKER_CACHE_DIR build
-                env
+                pwd
 
 deploy:
     steps:
